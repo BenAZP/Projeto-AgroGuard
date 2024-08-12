@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     EditText username, password, repassword;
-    Button signup, signin, registros;
+    Button signup, signin;
     DBHelper DB;
 
     @Override
@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
         repassword = findViewById(R.id.repassword);
         signup = findViewById(R.id.signup);
         signin = findViewById(R.id.signin);
-        registros = findViewById(R.id.registros); // Inicializando o botão "registros"
         DB = new DBHelper(this);
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -66,15 +65,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        registros.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, BDDRegister.class);
-                startActivity(intent);
-            }
-        });
-
 
     }
 

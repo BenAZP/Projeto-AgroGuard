@@ -75,26 +75,4 @@ public class DBHelper extends SQLiteOpenHelper {
         return username;
     }
 
-    public ArrayList<String> getAllUsers() {
-        ArrayList<String> userList = new ArrayList<>();
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.rawQuery("SELECT * FROM users", null);
-        if (cursor.moveToFirst()) {
-            do {
-                @SuppressLint("Range") String username = cursor.getString(cursor.getColumnIndex("username"));
-                @SuppressLint("Range") String password = cursor.getString(cursor.getColumnIndex("password"));
-                String userData = "Username: " + username + ", Password: " + password;
-                userList.add(userData);
-            } while (cursor.moveToNext());
-        }
-
-        cursor.close();
-        db.close();
-
-        return userList;
-    }
-
-
-
 }

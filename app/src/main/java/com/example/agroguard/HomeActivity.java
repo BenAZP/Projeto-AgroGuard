@@ -1,20 +1,22 @@
 package com.example.agroguard;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private DBHelper dbHelper;
+    DrawerLayout drawerLayout;
+    ImageView menu;
+    LinearLayout home, settings, share, about, logout; // Adicionando logout aqui
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,24 +24,27 @@ public class HomeActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
 
-        dbHelper = new DBHelper(this);
-        displayUserProfile();
+        // Inicializando as views
+        drawerLayout = findViewById(R.id.drawerLayout);
+        menu = findViewById(R.id.menu);
+        home = findViewById(R.id.home);
+        about = findViewById(R.id.about);
+        settings = findViewById(R.id.settings);
+        share = findViewById(R.id.share);
+        logout = findViewById(R.id.logout); // Inicializando o LinearLayout para logout
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        // Definindo listeners para os botões do menu
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDrawer(drawerLayout);
+            }
         });
 
-        // Configura o botão de sair
-        ImageView logoutButton = findViewById(R.id.logout_button);
-        logoutButton.setOnClickListener(new View.OnClickListener() {
+        home.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                // Redireciona para a LoginActivity
-                Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish(); // Opcional: fecha a HomeActivity para evitar que o usuário volte pressionando o botão Voltar
+            public void onClick(View view) {
+                recreate(); // Reinicia a HomeActivity
             }
         });
 
@@ -52,16 +57,37 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // Listener para o logout
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish(); // Opcional: fecha a HomeActivity para não voltar a ela com o botão "Voltar"
+            }
+        });
     }
 
-    private void displayUserProfile() {
-        ImageView profileIcon = findViewById(R.id.profile_icon);
-        TextView usernameText = findViewById(R.id.username_text);
+    public static void openDrawer(DrawerLayout drawerLayout) {
+        drawerLayout.openDrawer(GravityCompat.START);
+    }
 
-        // Obter o nome do usuário do banco de dados
-        String username = dbHelper.getUsername();
+    public static void closeDrawer(DrawerLayout drawerLayout) {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+    }
 
-        // Definir o nome do usuário no TextView
-        usernameText.setText(username);
+    public static void redirectActivity(Activity activity, Class<?> secondActivity) {
+        Intent intent = new Intent(activity, secondActivity);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        activity.startActivity(intent);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        closeDrawer(drawerLayout);
     }
 }

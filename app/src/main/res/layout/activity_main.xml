@@ -1,98 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="9dp"
-    android:background="#021F27"
-    android:orientation="vertical"
+    android:background="#E8E8E8"
     tools:context=".MainActivity">
 
-
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        android:adjustViewBounds="true"
-        android:src="@drawable/logo" />
-
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Registro"
-        android:textSize="40sp"
-        android:textColor="#E6E6E6"
-        android:textStyle="bold"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="15dp" />
+        android:layout_height="match_parent"
+        android:padding="9dp">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/username"
-        android:hint="Usuario"
-        android:textSize="25dp"
-        android:textColorHint="#FFFFFF"
-        android:background="@drawable/edittextbackground"
-        android:layout_marginBottom="30dp"
-        android:paddingLeft="20dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/password"
-        android:inputType="textPassword"
-        android:hint="Senha"
-        android:textSize="25dp"
-        android:textColorHint="#FFFFFF"
-        android:background="@drawable/edittextbackground"
-        android:layout_marginBottom="30dp"
-        android:paddingLeft="20dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#76BF2B"
+            android:orientation="vertical"
+            android:padding="20dp">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/repassword"
-        android:inputType="textPassword"
-        android:hint="Confirmar Senha"
-        android:textSize="25dp"
-        android:textColorHint="#FFFFFF"
-        android:background="@drawable/edittextbackground"
-        android:layout_marginBottom="15dp"
-        android:paddingLeft="20dp"/>
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:adjustViewBounds="true"
+                android:src="@drawable/logo" />
 
-    <Button
-        android:id="@+id/signup"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="#76BF2B"
-        android:text="REGISTRAR"
-        android:textSize="20dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Registro"
+                android:textSize="40sp"
+                android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp" />
+        </LinearLayout>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:id="@+id/signin"
-        android:text="Já Tenho uma Conta"
-        android:textSize="20dp"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:backgroundTint="#02000000"
-        android:layout_marginBottom="10dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical"
+            android:layout_marginTop="50dp"
+            android:elevation="4dp">
 
-    <Button
-        android:id="@+id/registros"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginBottom="01dp"
-        android:backgroundTint="#76BF2B"
-        android:text="Tabela de Registros"
-        android:textSize="20dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:id="@+id/username"
+                android:hint="Usuario"
+                android:textSize="20dp"
+                android:textColorHint="#635F5F"
+                android:background="@drawable/edittextbackground"
+                android:layout_marginBottom="30dp"
+                android:paddingLeft="20dp" />
 
-</LinearLayout>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:id="@+id/password"
+                android:inputType="textPassword"
+                android:hint="Senha"
+                android:textSize="20dp"
+                android:textColorHint="#635F5F"
+                android:background="@drawable/edittextbackground"
+                android:layout_marginBottom="30dp"
+                android:paddingLeft="20dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:id="@+id/repassword"
+                android:inputType="textPassword"
+                android:hint="Confirmar Senha"
+                android:textSize="20dp"
+                android:textColorHint="#635F5F"
+                android:background="@drawable/edittextbackground"
+                android:layout_marginBottom="15dp"
+                android:paddingLeft="20dp" />
+
+            <Button
+                android:id="@+id/signup"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="#76BF2B"
+                android:text="REGISTRAR"
+                android:textSize="20dp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/signin"
+                android:text="Já Tenho uma Conta"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:backgroundTint="#02000000"
+                android:layout_marginBottom="10dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
+
+    </RelativeLayout>
